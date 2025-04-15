@@ -41,15 +41,19 @@ public class UserController {
     
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void postMethodName(@RequestBody NewUser newUser) {
+    public void postMethodName(
+        @Valid
+        @RequestBody
+        NewUser newUser
+        ) {
 
-        if (newUser.email() == null || newUser.password() == null) {
-            throw new IllegalArgumentException("Email e senha são obrigatórios");
-        }
-
-        if (newUser.email().isEmpty() || newUser.password().isEmpty()) {
-            throw new IllegalArgumentException("Email e senha não podem estar vazios");
-        }
+        //if (newUser.email() == null || newUser.password() == null) {
+        //    throw new IllegalArgumentException("Email e senha são obrigatórios");
+        //}
+  
+        //if (newUser.email().isEmpty() || newUser.password().isEmpty()) {
+        //    throw new IllegalArgumentException("Email e senha não podem estar vazios");
+        //}
 
         if (!newUser.email().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
             throw new IllegalArgumentException("Email não é válido");
