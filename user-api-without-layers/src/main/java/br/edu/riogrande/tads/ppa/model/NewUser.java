@@ -12,4 +12,6 @@ public record NewUser(
         List<String> roles
 )  {
 
+        @NotNull(message = "Name cannot be null")
+        String name;
 }
