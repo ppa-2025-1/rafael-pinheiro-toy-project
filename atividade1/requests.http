@@ -1,0 +1,60 @@
+
+### Get all users
+
+GET /api/v1/users HTTP/1.1
+Host: localhost:8080
+Accept: application/json
+
+### Get all tickets
+
+GET /api/v1/ticket HTTP/1.1
+Host: localhost:8080
+Accept: application/json
+
+### Get ticket
+
+GET /api/v1/ticket/1 HTTP/1.1
+Host: localhost:8080
+Accept: application/json
+
+### Create a new User
+
+POST /api/v1/users HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+    "email": "batata@potato.com",
+    "password": "1234RT56",
+    "handle": "papas",
+    "name": "Kartofel",
+    "roles": [
+        "ROLE_USER"
+    ],
+    "company": "potato inc"
+}
+
+### Cria um novo ticket
+
+POST /api/v1/ticket HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+    "acao": "INSTALAR",
+    "objeto": "COMPUTADOR",
+    "detalhamento": "Instalar computador na sala 1010",
+    "situacao": "NOVO",
+    "user": 1
+}
+
+### Edita um ticket
+
+PATCH /api/v1/ticket/1 HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+
+{
+    "objeto": "HANDLE",
+    "detalhamento": "Trocar handle do usuario",
+}

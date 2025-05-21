@@ -1,0 +1,36 @@
+Complementar a API para suportar a criação de chamados (Sistema de Suporte)
+
+Ticket
+   Ação: INSTALAR
+   Objeto: COMPUTADOR
+   Detalhamento: Instalar computador na sala 1010
+   Situação: NOVO, ANDAMENTO, RESOLVIDO, CANCELADO
+   Usuário: 125 (marcio.torres)
+
+Não fechar as ações nem objetos (não pode ser um enum)
+   Ação: CRIAR
+   Objeto: E-MAIL
+   Detalhamento: Criar e-mail marcio.torres@tads.rg.ifrs.edu.br
+
+Deve permitir: (4 endpoints)
+  - Abrir um chamado (NOVO) --- POST (HOJE) OK
+  - Consultar um chamado, pelo ID --- GET OK
+  - Consultar todos os chamados --- GET OK
+  - Alterar a situação de um chamado: --- PATCH OK
+      NOVO => ANDAMENTO
+      NOVO => CANCELADO
+      ANDAMENTO => CANCELADO
+      ANDAMENTO => RESOLVIDO
+
+QUANDO UM NOVO USUÁRIO FOR CRIADO DEVE SER AUTOMATICAMENTE ABERTO UM CHAMADO PARA CRIAR SEU E-MAIL: OK
+   Ex.: Usuário marcio.torres (handle) foi criado
+     => Abrir um chamado
+         CRIAR
+         E-MAIL
+         marcio.torres@tads.rg.ifrs.edu.br
+         Criar e-mail para novo usuário.
+
+==> Campos comuns à todas entidades
+id
+created_at
+updated_at
