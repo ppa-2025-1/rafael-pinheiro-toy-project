@@ -5,15 +5,15 @@ GET /api/v1/users HTTP/1.1
 Host: localhost:8080
 Accept: application/json
 
-### Get all tickets
+### Get all chamados
 
-GET /api/v1/ticket HTTP/1.1
+GET /api/v1/chamado HTTP/1.1
 Host: localhost:8080
 Accept: application/json
 
-### Get ticket
+### Get chamado
 
-GET /api/v1/ticket/1 HTTP/1.1
+GET /api/v1/chamado/1 HTTP/1.1
 Host: localhost:8080
 Accept: application/json
 
@@ -34,9 +34,9 @@ Content-Type: application/json
     "company": "potato inc"
 }
 
-### Cria um novo ticket
+### Cria um novo chamado
 
-POST /api/v1/ticket HTTP/1.1
+POST /api/v1/chamado HTTP/1.1
 Host: localhost:8080
 Content-Type: application/json
 
@@ -48,13 +48,16 @@ Content-Type: application/json
     "user": 1
 }
 
-### Edita um ticket
+### Edita um chamado
 
-PATCH /api/v1/ticket/1 HTTP/1.1
+PATCH /api/v1/chamado/2 HTTP/1.1
 Host: localhost:8080
 Content-Type: application/json
 
 {
-    "objeto": "HANDLE",
-    "detalhamento": "Trocar handle do usuario",
+    "acao": "INSTALAR",
+    "objeto": "COMPUTADOR",
+    "detalhamento": "Instalar computador na sala 1010",
+    "status": "ANDAMENTO",
+    "user": 1
 }

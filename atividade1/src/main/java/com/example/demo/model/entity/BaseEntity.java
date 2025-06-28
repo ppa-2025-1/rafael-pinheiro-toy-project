@@ -2,8 +2,6 @@ package com.example.demo.model.entity;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.Where;
-
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,7 +10,6 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @MappedSuperclass
-@Where(clause = "deleted IS FALSE")
 public abstract class BaseEntity {
     
     @Id

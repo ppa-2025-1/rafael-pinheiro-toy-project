@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 
 // CLASSE (RECORD OU STRUCT) QUE NÃO POSSUI LÓGICA DE NEGÓCIO
 // E É USADA PARA "CARREGAR" OU "TRANSFERIR" DADOS ENTRE CAMADAS
-// É ticket DTO: 
+// É chamado DTO: 
 // Data Transfer Object -> Objeto de Transferência de Dados
 public record NewUser(
         String name,

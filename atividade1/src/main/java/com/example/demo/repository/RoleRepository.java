@@ -3,8 +3,6 @@ package com.example.demo.repository;
 import java.util.Collection;
 import java.util.Set;
 
-import org.springframework.data.repository.ListCrudRepository;
-
 import com.example.demo.model.entity.Role;
 
 public interface RoleRepository extends BaseRepository<Role, Integer> {

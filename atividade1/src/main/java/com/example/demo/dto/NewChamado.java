@@ -1,12 +1,12 @@
 package com.example.demo.dto;
 
-import com.example.demo.model.entity.Ticket;
+import com.example.demo.model.entity.Chamado;
 
-public record NewTicket(
+public record NewChamado(
 		String acao,
 		String objeto,
 		String detalhamento,
 		Integer user,
-		Ticket.StatusType status
+		Chamado.StatusType status
 		) {
 }

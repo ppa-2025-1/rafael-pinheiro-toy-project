@@ -9,8 +9,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "ticket")
-public class Ticket extends BaseEntity {
+@Table(name = "chamado")
+public class Chamado extends BaseEntity {
 
 	@Column(nullable = false, length = 255)
 	private String acao;

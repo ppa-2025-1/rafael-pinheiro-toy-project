@@ -7,9 +7,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.example.demo.dto.NewTicket;
+import com.example.demo.dto.NewChamado;
 import com.example.demo.dto.NewUser;
-import com.example.demo.model.entity.Ticket;
+import com.example.demo.model.entity.Chamado;
 import com.example.demo.model.entity.Profile;
 import com.example.demo.model.entity.Role;
 import com.example.demo.model.entity.User;
@@ -22,19 +22,19 @@ public class UserBusiness {
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
-    private TicketBusiness ticketBusiness;
+    private ChamadoBusiness chamadoBusiness;
     private BCryptPasswordEncoder passwordEncoder;
     private Set<String> defaultRoles;
 
     public UserBusiness(
             UserRepository userRepository,
             RoleRepository roleRepository,
-            TicketBusiness ticketBusiness,
+            ChamadoBusiness chamadoBusiness,
             @Value("${app.user.default.roles}") Set<String> defaultRoles) {
 
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-        this.ticketBusiness = ticketBusiness;
+        this.chamadoBusiness = chamadoBusiness;
         this.passwordEncoder = new BCryptPasswordEncoder();
         this.defaultRoles = defaultRoles;
     }
@@ -91,7 +91,7 @@ public class UserBusiness {
         user.setProfile(profile);
 
         userRepository.save(user);
-        criarTicketEmail(user);
+        criarChamadoEmail(user);
     }
 
     private String generateHandle(String email) {
@@ -104,15 +104,15 @@ public class UserBusiness {
         return handle;
     }
 
-    private void criarTicketEmail(User user) {
-        NewTicket newTicket = new NewTicket(
+    private void criarChamadoEmail(User user) {
+        NewChamado newChamado = new NewChamado(
                 "CRIAR",
                 "E-MAIL",
-                "Criar e-mail para novo usuário: " + user.getHandle(),
+                "Criar e-mail para novo usuário: " + user.getHandle() + "@tads.rg.ifrs.edu.br",
                 user.getId(),
-                Ticket.StatusType.NOVO);
+                Chamado.StatusType.NOVO);
 
-        ticketBusiness.criarTicket(newTicket);
+        chamadoBusiness.criarChamado(newChamado);
     }
 
 }

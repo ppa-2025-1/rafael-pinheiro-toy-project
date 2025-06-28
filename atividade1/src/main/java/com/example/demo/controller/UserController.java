@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.NewUser;
+import com.example.demo.dto.UserResponse;
 import com.example.demo.model.business.UserBusiness;
 import com.example.demo.model.entity.User;
 import com.example.demo.repository.UserRepository;
@@ -34,7 +35,7 @@ public class UserController extends AbstractController {
     private final UserBusiness userBusiness;
 
     public UserController(UserRepository userRepository,
-                          UserBusiness userBusiness) {
+            UserBusiness userBusiness) {
         this.userRepository = userRepository;
         this.userBusiness = userBusiness;
     }
@@ -42,16 +43,23 @@ public class UserController extends AbstractController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
     public void createNewUser(
-        @Valid
-        @RequestBody
-        NewUser newUser) {
+            @Valid @RequestBody NewUser newUser) {
 
         userBusiness.criarUsuario(newUser);
 
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<User>> getUsers() {
-        return ResponseEntity.ok(userRepository.findAll());
+    public ResponseEntity<List<UserResponse>> getUsers() {
+        List<UserResponse> users = userRepository.findAll().stream()
+                .map(user -> new UserResponse(
+                        user.getId(),
+                        user.getEmail(),
+                        user.getHandle(),
+                        user.getProfile() != null ? user.getProfile().getName() : null,
+                        user.getRoles().stream().map(role -> role.getName()).toList()))
+                .toList();
+
+        return ResponseEntity.ok(users);
     }
 }
